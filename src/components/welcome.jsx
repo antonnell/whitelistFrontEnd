@@ -94,9 +94,9 @@ class Welcome extends Component {
                   onChange={(event) => { this.props.handleChange(event, "emailAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
                   helperText={this.props.emailAddressErrorText != null ? this.props.emailAddressErrorText: "Your email address that we can get hold of you on"}/>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.ethAddressError} disabled={this.props.loading}
-                  id="ethAddress" label="Etherium Address" value={this.props.ethAddress}
+                  id="ethAddress" label="Ethereum Address" value={this.props.ethAddress}
                   onChange={(event) => { this.props.handleChange(event, "ethAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
-                  helperText={this.props.ethAddressErrorText != null ? this.props.ethAddressErrorText: "Your Etherium public address"}/>
+                  helperText={this.props.ethAddressErrorText != null ? this.props.ethAddressErrorText: "Your Ethereum public address"}/>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.wanAddressError} disabled={this.props.loading}
                   id="wanAddress" label="Wanchain Address" value={this.props.wanAddress}
                   onChange={(event) => { this.props.handleChange(event, "wanAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
@@ -112,7 +112,7 @@ class Welcome extends Component {
             </Grid>
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "40px"}}>
               <Grid item xs={12} align="right">
-                <Button variant="raised" size="large" color="secondary" onClick={this.props.submitWhitelist}>
+                <Button variant="raised" size="large" style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist}>
                   Whitelist Me
                 </Button>
               </Grid>

@@ -6,6 +6,10 @@ import { createMuiTheme, MuiThemeProvider } from "material-ui/styles";
 import Welcome from "./containers/welcome.jsx";
 
 const theme = createMuiTheme({
+  typography: {
+    // Use the system font over Roboto.
+    fontFamily: 'Abel, sans-serif',
+  },
   palette: {
     primary: {
       light: "#5c5c5c",
@@ -15,9 +19,10 @@ const theme = createMuiTheme({
     },
     secondary: {
       light: "#72ffff",
-      main: "#2ad4dc",
+      //main: "#2ad4dc",
+      main: "#000000",
       dark: "#00a2aa",
-      contrastText: "#000000",
+      contrastText: "#ffffff",
     }
   }
 });

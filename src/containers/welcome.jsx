@@ -1,9 +1,48 @@
 import React from "react"
 import WelcomeComponent from "../components/welcome"
+import { sha3 } from 'ethereumjs-util';
 const createReactClass = require("create-react-class")
 const isEthereumAddress  = require('is-ethereum-address');
 let emitter = require("../store/store.js").default.emitter
 let dispatcher = require("../store/store.js").default.dispatcher
+
+function isWanchainAddress(address: string): boolean {
+  if (address === '0x0000000000000000000000000000000000000000') {
+    return false;
+  }
+  if (address.substring(0, 2) !== '0x') {
+    return false;
+  } else if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    return false;
+  /*} else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+    return true;*/
+  } else {
+    return isChecksumAddress(address);
+  }
+}
+function toChecksumWaddress(address: string): boolean {
+  /* stripHexPrefix */
+  if (typeof address !== 'string') {
+    return false;
+  }
+  address = address.slice(0, 2) === '0x' ? address.slice(2) : address;
+  address = address.toLowerCase();
+  /* toChecksumWaddress */
+  const hash = sha3(address).toString('hex');
+  let ret = '0x';
+
+  for (let i = 0; i < address.length; i++) {
+    if (parseInt(hash[i], 16) < 8) {
+      ret += address[i].toUpperCase();
+    } else {
+      ret += address[i];
+    }
+  }console.log(ret)
+  return ret;
+}
+function isChecksumAddress(address: string): boolean {
+  return address === toChecksumWaddress(address);
+}
 
 let Welcome = createReactClass({
   getInitialState() {
@@ -119,10 +158,10 @@ let Welcome = createReactClass({
     if(this.state.wanAddress == "") {
       this.setState({wanAddressError: true, wanAddressErrorText: "Wanchain Address is required"});
       error = true;
-    } /*else if (!isEthereumAddress(this.state.wanAddress)) {
+    } else if (!isWanchainAddress(this.state.wanAddress)) {
       this.setState({wanAddressError: true, wanAddressErrorText: "Invalid Wanchain address"});
       error = true;
-    }*/
+    }
 
     if(!error) {
       this.setState({loading: true});
