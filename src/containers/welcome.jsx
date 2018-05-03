@@ -179,7 +179,7 @@ let Welcome = createReactClass({
     if(data.success) {
       this.setState({loaded: true});
     } else {
-      this.setState({error: data.errorMsg});
+      this.setState({error: data.message});
     }
   },
 })

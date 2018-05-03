@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import SvgIcon from 'material-ui/SvgIcon';
 import Snackbar from 'material-ui/Snackbar';
+import { CircularProgress } from 'material-ui/Progress';
 
 const styles = {};
 
@@ -82,7 +83,7 @@ class Welcome extends Component {
           <Grid item xs={12} align="center">
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0}>
               <Grid item xs={12} align="center">
-                <Typography variant="display1" color="inherit">
+                <Typography variant="display1" color="inherit" style={{fontSize: '2.125rem'}}>
                   Whitelist
                 </Typography>
               </Grid>
@@ -90,19 +91,20 @@ class Welcome extends Component {
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0}>
               <Grid item xs={12} style={{marginTop: "20px"}}>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.emailAddressError} disabled={this.props.loading}
-                  id="emailAddress" label="Email Address" value={this.props.emailAddress}
+                  id="emailAddress" placeholder="Email Address" value={this.props.emailAddress}
                   onChange={(event) => { this.props.handleChange(event, "emailAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
                   helperText={this.props.emailAddressErrorText != null ? this.props.emailAddressErrorText: "Your email address that we can get hold of you on"}/>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.ethAddressError} disabled={this.props.loading}
-                  id="ethAddress" label="Ethereum Address" value={this.props.ethAddress}
+                  id="ethAddress" placeholder="Ethereum Address" value={this.props.ethAddress}
                   onChange={(event) => { this.props.handleChange(event, "ethAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
                   helperText={this.props.ethAddressErrorText != null ? this.props.ethAddressErrorText: "Your Ethereum public address"}/>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.wanAddressError} disabled={this.props.loading}
-                  id="wanAddress" label="Wanchain Address" value={this.props.wanAddress}
+                  id="wanAddress" placeholder="Wanchain Address" value={this.props.wanAddress}
                   onChange={(event) => { this.props.handleChange(event, "wanAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
                   helperText={this.props.wanAddressErrorText != null ? this.props.wanAddressErrorText: "Your Wanchain public address"}/>
               </Grid>
             </Grid>
+            {this.props.loading && <CircularProgress size={36} style={{position: 'absolute',top: '50%',left: '50%',marginTop: -12,marginLeft: -12,}}/>}
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{minHeight: "30px"}}>
               <Grid item xs={12} align="right">
                 <Typography style={{color: "#f44336"}} >
@@ -113,7 +115,7 @@ class Welcome extends Component {
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
               <Grid item xs={12} align="right">
                 <Button variant="raised" size="large" fullWidth={true} style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist}>
-                  Whitelist Me
+                  Whitelist
                 </Button>
               </Grid>
             </Grid>
@@ -123,5 +125,5 @@ class Welcome extends Component {
     );
   };
 }
-
+//
 export default withStyles(styles)(Welcome);
