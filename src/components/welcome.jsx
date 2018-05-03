@@ -33,7 +33,7 @@ class Welcome extends Component {
     if(this.props.loaded) {
 
       return (
-        <Card>
+        <Grid>
           <Grid container justify="center" alignItems="center" direction="row" spacing={0} style={{padding: "60px 20px 60px 20px", margin: "0 auto"}}>
             <Grid item xs={12} align="center">
               <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{minHeight: "30px"}}>
@@ -72,13 +72,13 @@ class Welcome extends Component {
             }}
             message={<span id="message-id">Address copied to clipboard</span>}
           />
-        </Card>
+        </Grid>
       )
     }
 
     return (
-      <Card>
-        <Grid container justify="center" alignItems="center" direction="row" spacing={0} style={{padding: "60px 20px 60px 20px", maxWidth: "400px", margin: "0 auto"}}>
+      <Grid>
+        <Grid container justify="center" alignItems="center" direction="row" spacing={0} style={{padding: "60px 20px 60px 20px", maxWidth: "400px", margin: "0 auto",marginTop:"100px"}}>
           <Grid item xs={12} align="center">
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0}>
               <Grid item xs={12} align="center">
@@ -88,7 +88,7 @@ class Welcome extends Component {
               </Grid>
             </Grid>
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0}>
-              <Grid item xs={12} style={{marginTop: "50px"}}>
+              <Grid item xs={12} style={{marginTop: "20px"}}>
                 <TextField required fullWidth={true} color="textSecondary" error={this.props.emailAddressError} disabled={this.props.loading}
                   id="emailAddress" label="Email Address" value={this.props.emailAddress}
                   onChange={(event) => { this.props.handleChange(event, "emailAddress"); }} margin="normal" onKeyDown={this.props.onWhitelistKeyDown}
@@ -110,16 +110,16 @@ class Welcome extends Component {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "40px"}}>
+            <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
               <Grid item xs={12} align="right">
-                <Button variant="raised" size="large" style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist}>
+                <Button variant="raised" size="large" fullWidth={true} style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist}>
                   Whitelist Me
                 </Button>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Card>
+      </Grid>
     );
   };
 }
