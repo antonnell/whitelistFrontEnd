@@ -50,6 +50,8 @@ class App extends Component {
       modalOpen: false
     };
 
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
     this.closeModal = this.closeModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   };
@@ -57,15 +59,34 @@ class App extends Component {
   componentDidMount() {
     var loader = document.getElementById("loader")
     document.body.removeChild(loader);
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
   }
+
+  updateWindowDimensions() {
+
+    var size = 'sm'
+    if(window.innerWidth <= 360) {
+      size = 'xs'
+    } else if (window.innerWidth <= 640) {
+      size = 'sm'
+    } else if (window.innerWidth <= 960) {
+      size = 'md'
+    } else {
+      size = 'lg'
+    }
+
+    this.setState({ width: window.innerWidth, height: window.innerHeight, size });
+  };
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div style ={{backgroundColor: "#000", maxHeight:225, borderBottom: "1px solid #000"}}>
-          <Grid container  alignItems="flex-start" direction="row" spacing={0}>
+          <Grid container alignItems="flex-start" direction="row" spacing={0}>
             <Grid item xs={11} sm={8} md={6} lg={4} align="flex-start" style={{marginTop: "20px"}}>
-              <img src="./cryptocurve-logo-white2.png" alt="CryptoCurve.io" heigth="64px" width="245px" style={{padding:"0 4.5%", marginLeft:"110px",marginTop:"35px"}} />
+              <img src="./cryptocurve-logo-white2.png" alt="CryptoCurve.io" heigth="64px" width="245px" style={{padding:"0 4.5%", marginLeft:"80px",marginTop:"35px"}} />
             </Grid>
           </Grid>
           <CssBaseline />
@@ -76,7 +97,7 @@ class App extends Component {
           </Grid>
           <Grid container justify="space-around" alignItems="flex-start" direction="row" spacing={0}>
             <Grid item xs={12}>
-              <Footer toggleModal={this.toggleModal} />
+              <Footer toggleModal={this.toggleModal}  size={this.state.size}/>
             </Grid>
           </Grid>
           <DisclaimerModal toggleModal={this.toggleModal} isOpen={this.state.modalOpen} handleClose={this.closeModal} />

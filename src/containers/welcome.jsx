@@ -77,6 +77,7 @@ let Welcome = createReactClass({
         handleChange={this.handleChange}
         submitWhitelist={this.submitWhitelist}
         onWhitelistKeyDown={this.onWhitelistKeyDown}
+        navigateBack={this.navigateBack}
         smartContractAddress={this.state.smartContractAddress}
         onCopyClicked={this.onCopyClicked}
         emailAddress={this.state.emailAddress}
@@ -95,6 +96,10 @@ let Welcome = createReactClass({
         error={this.state.error}
       />
     );
+  },
+
+  navigateBack() {
+    this.setState({loaded: false, emailAddress: "", ethAddress: "", wanAddress: "", error: null})
   },
 
   handleSnackClose() {

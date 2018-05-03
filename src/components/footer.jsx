@@ -75,9 +75,20 @@ export default class Footer extends React.PureComponent<Props, State> {
   };
 
    render() {
+
+     console.log(this.props.size)
+     var showBorder = false
+     var footerFriendsAlign = 'right'
+     var linksAlign = 'left'
+     if(['xs', 'sm', 'md'].includes(this.props.size)) {
+       footerFriendsAlign = 'center'
+       linksAlign = 'center'
+       showBorder = true
+     }
+
     return (
       <Grid container justify="center" alignItems="flex-start" direction="row" spacing={0} style={{ backgroundColor: 'black', color: 'white', padding: '1.5rem' }}>
-        <Grid item xs={12} md={3} align="left">
+        <Grid item xs={12} md={3} align={linksAlign}>
           {socialMediaLinks.map((socialMediaItem, idx) => (
             <SocialMediaLink
               link={socialMediaItem.link}
@@ -87,11 +98,16 @@ export default class Footer extends React.PureComponent<Props, State> {
             />
           ))}
         </Grid>
+        {showBorder && <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
+          <Grid item xs={12} sm={false} align="right">
+            <div style={{borderBottom: '1px solid #DEDEDE', marginBottom: '12px'}}></div>
+          </Grid>
+        </Grid>}
         <Grid item xs={12} md={6} align="center">
           <div style={{marginBottom: '1rem'}}>
-            <Typography style={{display: 'inline-block', paddingLeft: '12px', paddingRight: '12px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://cryptocurve.io/">cryptocurve.io</a></Typography>
-            <Typography style={{display: 'inline-block', paddingLeft: '12px', paddingRight: '12px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://mycrypto.com/">mycrypto.com</a></Typography>
-            <Typography style={{display: 'inline-block', paddingLeft: '12px', paddingRight: '12px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://cryptocurve.io/team.php">Our Team</a></Typography>
+            <Typography style={{display: 'inline-block', paddingLeft: '8px', paddingRight: '8px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://cryptocurve.io/">cryptocurve.io</a></Typography>
+            <Typography style={{display: 'inline-block', paddingLeft: '8px', paddingRight: '8px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://mycrypto.com/">mycrypto.com</a></Typography>
+            <Typography style={{display: 'inline-block', paddingLeft: '8px', paddingRight: '8px'}}><a style={{color: '#FFFFFF', textDecoration: 'none', fontSize: '1.07rem'}} href="https://cryptocurve.io/team.php">Our Team</a></Typography>
           </div>
 
           <p style={{fontSize: '.75rem', maxWidth: '530px', opacity: '.8', margin: '0 auto 1rem'}}>This is an open-source, client-side tool for generating wallets, handling Smart Contract tokens, and interacting with the blockchain more easily. Developed by and for the community since 2018, we’re focused on building awesome products that put the power in people’s hands.</p>
@@ -106,7 +122,12 @@ export default class Footer extends React.PureComponent<Props, State> {
             <div style={{display: 'inline-block', margin: '0 .5rem', fontSize: '.8rem'}} >v{VERSION}</div>
           </div>
         </Grid>
-        <Grid item xs={12} md={3} align="right">
+        {showBorder && <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
+          <Grid item xs={12} sm={false} align="right">
+            <div style={{borderBottom: '1px solid #DEDEDE', marginBottom: '12px'}}></div>
+          </Grid>
+        </Grid>}
+        <Grid item xs={12} md={3} align={footerFriendsAlign}>
           <h5 style={{margin: '0 0 .5rem', fontSize: '1rem', fontWeight: 400}} className="Footer-support-title">Support MyCrypto & Our Friends</h5>
           <div style={{marginBottom: '.5rem'}}>
             {affiliateLinks.map((link, i) => (
@@ -120,6 +141,18 @@ export default class Footer extends React.PureComponent<Props, State> {
         </Grid>
       </Grid>
     );
+  }
+
+  renderSocialMedia() {
+
+  }
+
+  renderInfo() {
+
+  }
+
+  renderSupport() {
+
   }
 
    toggleModal = () => {

@@ -32,23 +32,24 @@ class Welcome extends Component {
     var that = this
 
     if(this.props.loaded) {
-
       return (
         <Grid>
-          <Grid container justify="center" alignItems="center" direction="row" spacing={0} style={{padding: "60px 20px 60px 20px", margin: "0 auto"}}>
+          <Grid container justify="center" alignItems="center" direction="row" spacing={0} style={{padding: "60px 20px 60px 20px", maxWidth: "400px", margin: "0 auto", marginTop:"100px"}}>
             <Grid item xs={12} align="center">
               <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{minHeight: "30px"}}>
                 <Grid item xs={12} align="center">
-                  <Typography variant="headline" >
-                    Submission Received
+                  <Typography variant="display1" color="inherit" style={{fontSize: '2.125rem'}}>
+                    Submission Accepted
                   </Typography>
-                  <Typography variant="body1" style={{marginTop: '12px'}} >
+                </Grid>
+                <Grid item xs={12} align="center">
+                  <Typography variant="body1" style={{marginTop: '24px'}} >
                     Thank you for joining the CryptoCurve whitelist. We will keep in contact with you via your submitted email address.
                   </Typography>
-                  <Typography variant="body1" style={{marginTop: '12px'}}>
+                  <Typography variant="body1" style={{marginTop: '24px'}}>
                     All you need to do, is send Eth to the address below:
                   </Typography>
-                  <Typography variant="body2" style={{marginTop: '12px'}}>
+                  <Typography variant="body2" style={{marginTop: '24px', fontWeight: 'bold'}}>
                     {this.props.smartContractAddress}
                     <Tooltip id="tooltip-icon" title="Copy Smart Contract Address">
                       <IconButton color="primary" component="span" onClick={this.props.onCopyClicked}>
@@ -56,6 +57,13 @@ class Welcome extends Component {
                       </IconButton>
                     </Tooltip>
                   </Typography>
+                </Grid>
+              </Grid>
+              <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
+                <Grid item xs={12} align="right">
+                  <Button variant="raised" size="large" fullWidth={true} style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.navigateBack} disabled={this.props.loading}>
+                    Back
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -114,7 +122,7 @@ class Welcome extends Component {
             </Grid>
             <Grid container justify="space-around" alignItems="center" direction="row" spacing={0} style={{marginTop: "20px"}}>
               <Grid item xs={12} align="right">
-                <Button variant="raised" size="large" fullWidth={true} style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist}>
+                <Button variant="raised" size="large" fullWidth={true} style={{transition:"ease 1s",borderRadius:"0px"}} color="secondary" onClick={this.props.submitWhitelist} disabled={this.props.loading}>
                   Whitelist
                 </Button>
               </Grid>
